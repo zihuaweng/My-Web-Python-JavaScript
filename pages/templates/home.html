@@ -8,12 +8,12 @@
 </head>
 <body>
 {% block content %}
-<h1>Homepage</h1>
-<ul>
-    {% for post in all_posts_list %}
-    <li>{{ post }}</li>
+    {% for page in object_list %}
+        <div class="page-entry">
+        <h2><a href="{% url 'page' page.pk %}">{{ page.title }}</a></h2>
+        <p>{{ page.body }}</p>
+        </div>
     {%  endfor %}
-</ul>
 {% endblock content %}
 </body>
 </html>

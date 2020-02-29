@@ -28,6 +28,8 @@ ALLOWED_HOSTS = ['*']
 
 # Application definition
 
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
 INSTALLED_APPS = [
     'pages.apps.PagesConfig',  # new
     'django.contrib.admin',

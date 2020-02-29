@@ -1,0 +1,16 @@
+<!-- templates/post_detail.html -->
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block content %}
+    <div class="page-entry">
+        <h2>{{ page.title }}</h2>
+        <p>{{ page.body }}</p></div>
+{% endblock content %}
+</body>
+</html>

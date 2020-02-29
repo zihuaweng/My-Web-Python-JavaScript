@@ -6,6 +6,7 @@ class Page(models.Model):
     author = models.ForeignKey(
         'auth.User',
         on_delete=models.CASCADE,
+        null=True
     )
     body = models.TextField()
 
