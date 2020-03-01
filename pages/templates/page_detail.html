@@ -10,7 +10,10 @@
 {% block content %}
     <div class="page-entry">
         <h2>{{ page.title }}</h2>
-        <p>{{ page.body }}</p></div>
+        <p>{{ page.body }}</p>
+    </div>
+    <p><a href="{% url 'page_edit' page.pk %}">+ Edit Blog Post</a></p>
+    <p><a href="{% url 'page_delete' page.pk %}">+ Delete Blog Post</a></p>
 {% endblock content %}
 </body>
 </html>

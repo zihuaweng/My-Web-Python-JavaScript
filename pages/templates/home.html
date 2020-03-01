@@ -10,7 +10,7 @@
 {% block content %}
     {% for page in object_list %}
         <div class="page-entry">
-        <h2><a href="{% url 'page' page.pk %}">{{ page.title }}</a></h2>
+        <h2><a href="{% url 'page_detail' page.pk %}">{{ page.title }}</a></h2>
         <p>{{ page.body }}</p>
         </div>
     {%  endfor %}

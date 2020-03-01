@@ -40,21 +40,41 @@ class PageModelTest(TestCase):
         self.assertContains(response, 'A good title')
         self.assertTemplateUsed(response, 'page_detail.html')
 
+    def test_page_create_view(self):
+        response = self.client.post(reverse('page_new'), {
+            'title': 'new title',
+            'body': 'new body content',
+            'author': self.user,
+        })
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'new title')
+        self.assertContains(response, 'new body content')
 
-class HomePageViewTest(TestCase):
+    def test_page_update_view(self):
+        response = self.client.post(reverse('page_edit', args='1'), {
+            'title': 'update title',
+            'body': 'update body content'
+        })
+        self.assertEqual(response.status_code, 302)
 
-    def setUp(self) -> None:
-        Page.objects.create(title='this is another test')
-
-    def test_home_page_status_code(self):
-        response = self.client.get('/')
+    def test_page_delete_view(self):
+        response = self.client.post(reverse('page_delete', args='1'))
         self.assertEqual(response.status_code, 200)
 
-    def test_about_page_status_code(self):
-        response = self.client.get('/about/')
-        self.assertEqual(response.status_code, 200)
+    class HomePageViewTest(TestCase):
 
-    def test_view_uses_correct_template(self):
-        resp = self.client.get(reverse('home'))
-        self.assertEqual(resp.status_code, 200)
-        self.assertTemplateUsed(resp, 'home.html')
+        def setUp(self) -> None:
+            Page.objects.create(title='this is another test')
+
+        def test_home_page_status_code(self):
+            response = self.client.get('/')
+            self.assertEqual(response.status_code, 200)
+
+        def test_about_page_status_code(self):
+            response = self.client.get('/about/')
+            self.assertEqual(response.status_code, 200)
+
+        def test_view_uses_correct_template(self):
+            resp = self.client.get(reverse('home'))
+            self.assertEqual(resp.status_code, 200)
+            self.assertTemplateUsed(resp, 'home.html')
